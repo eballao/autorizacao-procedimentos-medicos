@@ -6,16 +6,16 @@ import com.qualirede.api.dominio.objeto.DominioObject;
 
 import antlr.collections.List;
 
-public enum DominioPermitido implements BaseEnum {
+public enum DominioAutoriza implements BaseEnum {
 	
 	SIM("Sim"),
 	NAO("Não");
 
-    private static final DominioPermitido[] ENUMS = DominioPermitido.values();
+    private static final DominioAutoriza[] ENUMS = DominioAutoriza.values();
 
     private String descricao;
 
-    private DominioPermitido(final String descricao) {
+    private DominioAutoriza(final String descricao) {
         this.descricao = descricao;
     }
 
@@ -31,9 +31,9 @@ public enum DominioPermitido implements BaseEnum {
 
     public static List objects() {
         final ArrayList<DominioObject> objects = new ArrayList<>();
-        final DominioPermitido[] values = values();
+        final DominioAutoriza[] values = values();
 
-        for (final DominioPermitido dominio : values) {
+        for (final DominioAutoriza dominio : values) {
             objects.add(new DominioObject(dominio.name(), dominio.descricao));
         }
 

@@ -12,12 +12,14 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import com.qualirede.api.dominio.DominioPermitido;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.qualirede.api.dominio.DominioAutoriza;
 import com.qualirede.api.dominio.DominioSexo;
 
 import lombok.Getter;
 import lombok.Setter;
 
+@JsonIgnoreProperties("valid")
 @Entity
 @Table(name = "procedimento")
 @Getter
@@ -46,6 +48,20 @@ public class Procedimento implements Serializable {
 	@NotNull
 	@Enumerated(EnumType.STRING)
     @Column(name = "permitido", length = 3)
-	private DominioPermitido permitido;
+	private DominioAutoriza autoriza;
+	
+	public Procedimento(Integer procedimento, Integer idade, DominioSexo sexo, DominioAutoriza autoriza) {
+		this.procedimento = procedimento;
+		this.idade = idade;
+		this.sexo = sexo;
+		this.autoriza = autoriza;
+	}
+	
+	public boolean isValid() {
+		if(procedimento != null && idade != null && sexo != null && autoriza != null) {
+			return true;
+		}
+		return false;
+	}
 
 }
