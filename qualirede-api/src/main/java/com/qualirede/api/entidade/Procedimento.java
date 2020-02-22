@@ -33,7 +33,7 @@ public class Procedimento implements Serializable {
 	private Long id;
 	
 	@NotNull
-	@Column(name = "procedimento")
+	@Column(name = "numero_procedimento")
 	private Integer procedimento;
 	
 	@NotNull
