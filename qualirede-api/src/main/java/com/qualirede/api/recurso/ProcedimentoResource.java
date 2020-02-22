@@ -35,10 +35,11 @@ public class ProcedimentoResource {
 			DominioSexo domSexo = DominioSexo.valueOf(sexo);
 			DominioAutoriza domAutoriza = DominioAutoriza.valueOf(autoriza);
 			
-			Procedimento novoProcedimento = new Procedimento(procedimento, idade, domSexo, domAutoriza);
-			
-			Procedimento procedimentoSalvo = procedimentoRepositorio.save(novoProcedimento);
-			return ResponseEntity.ok(procedimentoSalvo);
+				Procedimento novoProcedimento = new Procedimento(procedimento, idade, domSexo, domAutoriza);
+				
+				Procedimento procedimentoSalvo = procedimentoRepositorio.save(novoProcedimento);
+				
+				return ResponseEntity.ok(procedimentoSalvo);
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);

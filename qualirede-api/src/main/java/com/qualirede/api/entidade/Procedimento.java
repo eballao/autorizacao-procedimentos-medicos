@@ -10,7 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.qualirede.api.dominio.DominioAutoriza;
@@ -20,10 +20,11 @@ import lombok.Getter;
 import lombok.Setter;
 
 @JsonIgnoreProperties("valid")
-@Entity
-@Table(name = "procedimento")
 @Getter
 @Setter
+@Entity
+@Table(name = "procedimento", uniqueConstraints = @UniqueConstraint(columnNames = { "numero_procedimento", "idade", "sexo" }, 
+name = "numero_procedimento_ukey"))
 public class Procedimento implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -32,22 +33,18 @@ public class Procedimento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
-	@Column(name = "numero_procedimento")
+	@Column(name = "numero_procedimento", nullable=false)
 	private Integer procedimento;
 	
-	@NotNull
-	@Column(name = "idade")
+	@Column(name = "idade", nullable=false)
 	private Integer idade;
 	
-	@NotNull
 	@Enumerated(EnumType.STRING)
-    @Column(name = "sexo", length = 1)
+    @Column(name = "sexo", length = 1, nullable=false)
 	private DominioSexo sexo;
 	
-	@NotNull
 	@Enumerated(EnumType.STRING)
-    @Column(name = "permitido", length = 3)
+    @Column(name = "permitido", length = 3, nullable=false)
 	private DominioAutoriza autoriza;
 	
 	public Procedimento(Integer procedimento, Integer idade, DominioSexo sexo, DominioAutoriza autoriza) {
